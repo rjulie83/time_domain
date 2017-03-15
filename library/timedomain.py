@@ -44,19 +44,25 @@ def transform(F,S,verbose=0,overs=0,window=False):
         	XO = X;
 
         
-    	# find the peak
+    	# find the first peak
     	peakindex = np.abs(TO).argmax()
     	Xpeak=XO[peakindex]
     	Tpeak=np.abs(TO[peakindex])
     	peakrange = slice(peakindex-5*overs,peakindex+5*overs)   # speed up the graph
     
+	# find the second peak
+	#reduced_TO = np.copy(TO)
+	#reduced_TO[10000-peakindex:10000+peakindex] = 0
+	#peakindex2 = np.abs(reduced_TO).argmax()
+	#Xpeak2 = XO[peakindex2]
+
     	# plot if requested
     	if verbose>2:
         	# plot - wide
         	plt.figure(figsize=(14,6))
         	plt.plot(X,20*np.log10(np.abs(T)),'b-',marker='o',ms=4,lw=1)
-        plt.ylim([-120,1]);  plt.grid(True);   # plt.xlim([0,100]); 
-        plt.ylabel('response, dB');  plt.xlabel('distance, m');  plt.title('Full unambiguous range, first copy')#
+        	plt.ylim([-120,1]);  plt.grid(True);   # plt.xlim([0,100]); 
+        	plt.ylabel('response, dB');  plt.xlabel('distance, m');  plt.title('Full unambiguous range, first copy')#
 
     	if verbose>1:
         	# plot - narrow
@@ -66,7 +72,7 @@ def transform(F,S,verbose=0,overs=0,window=False):
         	if overs>0:
             		plt.plot(XO[peakrange],20*np.log10(np.abs(TO[peakrange])),'k-',lw=2,label='%i x oversampling' % overs)
             		plt.plot(Xpeak,20*np.log10(Tpeak),marker='+',ms=20,color='k',label='detected peak position')
-        	plt.xlim([Xpeak-0.02,Xpeak+0.02]);
+        	plt.xlim([Xpeak-1,Xpeak+1]);
         	plt.ylim([np.around(20*np.log10(Tpeak)-35,decimals=-1),np.around(20*np.log10(Tpeak)+5,decimals=0)]);
         	plt.grid(True); plt.legend(loc=0);
         	plt.ylabel('response, dB');  plt.xlabel('distance, m');
@@ -74,7 +80,7 @@ def transform(F,S,verbose=0,overs=0,window=False):
 
     	if verbose>0: print 'Fmax=%4.1f GHz. %i points, %ix oversampled. Window=%i. Peak found at %8.5f m' % ((fmax)/1e9, pts, overs, window, Xpeak)
 
-    	return Xpeak
+    	return Xpeak#,Xpeak2
 
 def simulatefile(snr=60,fmax=8e9,pts=10001,signals = [[1,10.0]]):
     	# simulatefile(snr=60, fmax=8e9, pts=10001,overs=10,signals = [[1,10.0]])
