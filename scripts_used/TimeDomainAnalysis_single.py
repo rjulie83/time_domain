@@ -1,8 +1,8 @@
 import sys, os, glob, time
 import numpy as np
 #import matplotlib.pyplot as plt
-import timedomain as td
-import fileprocessing as fp
+import library.timedomain as td
+import library.fileprocessing as fp
 
 
 

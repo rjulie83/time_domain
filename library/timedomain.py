@@ -52,9 +52,11 @@ def transform(F,S,verbose=0,overs=0,window=False):
 	    
 	# find the second peak
 	reduced_TO = np.copy(TO)
-	reduced_TO[1000-peakindex:1000+peakindex] = 0
+	reduced_TO[peakindex-5*(1+overs):peakindex+5*(1+overs)] = 0.0000000001
 	peakindex2 = (20*np.log10(np.abs(reduced_TO))).argmax()
 	Xpeak2 = XO[peakindex2]
+	Tpeak2 = np.abs(TO[peakindex2])
+	peakrange2 = slice(peakindex2-5*overs,peakindex2+5*overs)
 
     	# plot if requested
     	if verbose>2:
