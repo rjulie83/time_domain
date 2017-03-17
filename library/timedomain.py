@@ -49,12 +49,12 @@ def transform(F,S,verbose=0,overs=0,window=False):
     	Xpeak=XO[peakindex]
     	Tpeak=np.abs(TO[peakindex])
     	peakrange = slice(peakindex-5*overs,peakindex+5*overs)   # speed up the graph
-    
+	    
 	# find the second peak
-	#reduced_TO = np.copy(TO)
-	#reduced_TO[10000-peakindex:10000+peakindex] = 0
-	#peakindex2 = np.abs(reduced_TO).argmax()
-	#Xpeak2 = XO[peakindex2]
+	reduced_TO = np.copy(TO)
+	reduced_TO[1000-peakindex:1000+peakindex] = 0
+	peakindex2 = (20*np.log10(np.abs(reduced_TO))).argmax()
+	Xpeak2 = XO[peakindex2]
 
     	# plot if requested
     	if verbose>2:
@@ -78,9 +78,9 @@ def transform(F,S,verbose=0,overs=0,window=False):
         	plt.ylabel('response, dB');  plt.xlabel('distance, m');
         	#title('Peak at %8.5f m' % Xpeak)
 
-    	if verbose>0: print 'Fmax=%4.1f GHz. %i points, %ix oversampled. Window=%i. Peak found at %8.5f m' % ((fmax)/1e9, pts, overs, window, Xpeak)
+    	if verbose>0: print 'Fmax=%4.1f GHz. %i points, %ix oversampled. Window=%i. Peak found at %8.5f m and %8.5f m' % ((fmax)/1e9, pts, overs, window, Xpeak,Xpeak2)
 
-    	return Xpeak#,Xpeak2
+    	return Xpeak,Xpeak2
 
 def simulatefile(snr=60,fmax=8e9,pts=10001,signals = [[1,10.0]]):
     	# simulatefile(snr=60, fmax=8e9, pts=10001,overs=10,signals = [[1,10.0]])

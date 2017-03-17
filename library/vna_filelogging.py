@@ -1,4 +1,4 @@
-import socket, date, time, datetime, array, numpy
+import socket, time,datetime, array, numpy
 
 def connect(IPaddress, port=5025, sleeptime = 1):
 	vna = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  
