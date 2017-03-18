@@ -1,6 +1,6 @@
 # timedomain-fibre
-All Python code related to analysing S21 data files recored from an RF Vector Network Analyser
+All Python code related to generating and processing S21 data from RF Vector Network Analyser
 
-Converting S21 data files to time domain mode and finding the peak within the unambiguous range.
+S parameter data is converted to time domain mode with an inverse fourier transform and peak detected
 
 Includes SCPI commands for the R&S ZVB8 and the Anritsu VNAs
