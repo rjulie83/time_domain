@@ -4,6 +4,17 @@ import numpy as np
 
 
 def transform(F,S,verbose=0,overs=0,window=False):
+	"""
+	Transforms f,s into time domain and returns distance to first and second peak in metres
+
+	USAGE: transform(F,S,verbose,overs,window)
+	where,
+	F is frequency vector in Hz
+	S is S21 s-parameter vector as a dimentionless voltage ratio in complex form
+	verbose is verbosity: Increasing levels of detail outputted. Ranges from 1 which just provides output to 3 which plots graphs with zoom to peak 
+	overs is multiplies the length of the S vector by padding with zeros [default = 0]
+	window applies a Hanning window [default = False]
+	"""
     	# transforms f,s into time domain, returns time of peak
     	# overs times frequency extension for oversampling
     	# window True will apply a hanning window to the frequency data
