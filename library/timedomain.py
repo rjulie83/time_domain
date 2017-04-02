@@ -7,13 +7,15 @@ def transform(F,S,verbose=0,overs=0,window=False):
 	"""
 	Transforms f,s into time domain and returns distance to first and second peak in metres
 
-	USAGE: transform(F,S,verbose,overs,window)
+	USAGE: transform(F,S,verbose,overs,window,peak1_index,peak2_index)
 	where,
 	F is frequency vector in Hz
 	S is S21 s-parameter vector as a dimentionless voltage ratio in complex form
 	verbose is verbosity: Increasing levels of detail outputted. Ranges from 1 which just provides output to 3 which plots graphs with zoom to peak 
 	overs is multiplies the length of the S vector by padding with zeros [default = 0]
 	window applies a Hanning window [default = False]
+
+	Return <peak1_position [m]>. <peak2_position [m]> <peak1_height [dB]> <peak2_height [dB]>
 	"""
     	# transforms f,s into time domain, returns time of peak
     	# overs times frequency extension for oversampling
@@ -56,8 +58,8 @@ def transform(F,S,verbose=0,overs=0,window=False):
 
         
     	# find the first peak
-    	peakindex = np.abs(TO).argmax()
-    	Xpeak=XO[peakindex]
+	peakindex = np.abs(TO).argmax()
+	Xpeak=XO[peakindex]
     	Tpeak=np.abs(TO[peakindex])
     	peakrange = slice(peakindex-5*overs,peakindex+5*overs)   # speed up the graph
 	pulsepeak1 =  max(20*np.log10(np.abs(TO)))

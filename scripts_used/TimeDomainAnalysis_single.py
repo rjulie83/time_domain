@@ -14,7 +14,7 @@ if __name__ == '__main__':
 	time_stamps,sdata = fp.loadfile_multisweep(filename)
 	F = fp.loadfile_frequency(filename2)
 	#F = f[::10]
-	td.transform(F,sdata[0],verbose=1,overs=50,)
+	td.transform(F,sdata[0],verbose=1,overs=50)
 	starttime = time.time()
 
 	#files = glob.glob(directory+'/*.txt')
