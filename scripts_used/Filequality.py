@@ -13,5 +13,6 @@ if __name__ == '__main__':
 	F = fp.loadfile_frequency(filename2)
 	timestamp,X = fp.loadfile_multisweep(filename1)
 	td.plotresponse(F,X[0])
-	td.transform(F,X[0],verbose=3)
+	A,B,C,D = td.transform(F,X[0],verbose=3)
+	print "Peak 1 level %0.2fdB, Peak 2 level %0.2f" % (C,D)
 	matplotlib.pyplot.show()
