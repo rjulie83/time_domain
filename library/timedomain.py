@@ -76,7 +76,7 @@ def transform(F,S,verbose=0,overs=0,window=False):
     	# plot if requested
     	if verbose>2:
         	# plot - wide
-        	plt.figure(figsize=(14,6))
+        	plt.figure(figsize=(15,8))
         	plt.plot(X,20*np.log10(np.abs(T)),'b-',marker='o',ms=4,lw=1)
         	plt.ylim([-120,1]);  plt.grid(True);   # plt.xlim([0,100]); 
         	plt.ylabel('response, dB');  plt.xlabel('distance, m');  plt.title('Full unambiguous range, first copy')#
@@ -129,9 +129,9 @@ def simulatefile(snr=60,fmax=8e9,pts=10001,signals = [[1,10.0]]):
 
 def plotresponse(F,S):
     	# plots the magnitude and phase of the response
-    	plt.figure(figsize=(14,2))
+    	plt.figure(figsize=(15,8))
     	plt.plot(F,20*np.log10(np.abs(S)))
     	plt.grid(True); plt.xlabel('Frequency, GHz'); plt.ylabel('Response, dB'); plt.title('Response magnitude plot')
-    	plt.figure(figsize=(14,2))
+    	plt.figure(figsize=(15,8))
     	plt.plot(F,180*np.unwrap(np.angle(S))/np.pi)
     	plt.grid(True); plt.xlabel('Frequency, GHz'); plt.ylabel('Unwrapped phase, Kdegrees'); plt.title('Response phase plot')
