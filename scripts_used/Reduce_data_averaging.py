@@ -28,7 +28,7 @@ if __name__ == '__main__':
 		loop_timestart = time.time()
 		delay1,delay2,height1,height2 = td.transform(F,np.mean(temp_sdata,axis=0),verbose=0,overs=oversampling_factor)
 		bar.next()
-		with open('data.csv','a') as data_file:
+		with open('data_averaged.csv','a') as data_file:
 			data_file.write('%f,%3.10f,%2.2f,%3.10f,%2.2f\n' % (timestamps_temp[0],delay1,height1,delay2,height2))
 		#sys.stdout.write('\nFile process time= %0.0fs, S21_dB_average= %2.0fdB and %2.0fdB\n' % (time.time()-loop_timestart,np.mean(heights1),np.mean(heights2)))
 		iteration = iteration + 1
