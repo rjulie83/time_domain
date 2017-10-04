@@ -16,7 +16,7 @@ if __name__ == '__main__':
 	files = glob.glob('*.txt')
 	files.sort(key=os.path.getmtime)
 	files.remove('frequency.txt')
-	bar = Bar('Processing',max=len(files)*100)
+	bar = Bar('Processing',max=len(files))
 	iteration = 0
 	with open('data.csv','a') as data_file:
 		data_file.write('Timestamp,Delay1[m],Delay1_amplitude[dB],Delay2[m],Delay2_amplitude[dB]\n')
